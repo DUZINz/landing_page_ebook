@@ -3,6 +3,7 @@ import App from '../App';
 
 test('renders the app', () => {
   render(<App />);
-  const linkElement = screen.getByText(/welcome to the ebook landing page/i);
+  // Corrigindo para o texto que realmente existe na página
+  const linkElement = screen.getByText(/welcome to my ebooks/i);
   expect(linkElement).toBeInTheDocument();
 });

@@ -1,15 +1,14 @@
 import React from 'react';
-import EbookCard from './EbookCard';
-import { Ebook } from '../types';
+import { EbookCard } from './';
+import { ebooks } from '../data/ebooks';
 
-interface EbookGridProps {
-  ebooks: Ebook[];
-}
+const EbookGrid: React.FC = () => {
+  // Verifica se ebooks existe e é um array, senão usa array vazio
+  const ebooksList = Array.isArray(ebooks) ? ebooks : [];
 
-const EbookGrid: React.FC<EbookGridProps> = ({ ebooks }) => {
   return (
     <div className="ebook-grid">
-      {ebooks.map((ebook) => (
+      {ebooksList.map((ebook) => (
         <EbookCard key={ebook.id} ebook={ebook} />
       ))}
     </div>

@@ -1,26 +1,20 @@
-export const ebooks = [
+import { Ebook } from '../types';
+
+export const ebooks: Ebook[] = [
   {
-    title: "Ebook Title 1",
-    author: "Author Name 1",
-    description: "This is a brief description of Ebook Title 1.",
-    imageUrl: "path/to/image1.jpg"
+    id: 1,
+    title: "Ebook de Exemplo 1",
+    description: "Uma descrição do primeiro ebook.",
+    coverImage: "/images/ebook1.jpg",
+    price: 19.99,
+    downloadLink: "#"
   },
   {
-    title: "Ebook Title 2",
-    author: "Author Name 2",
-    description: "This is a brief description of Ebook Title 2.",
-    imageUrl: "path/to/image2.jpg"
-  },
-  {
-    title: "Ebook Title 3",
-    author: "Author Name 3",
-    description: "This is a brief description of Ebook Title 3.",
-    imageUrl: "path/to/image3.jpg"
-  },
-  {
-    title: "Ebook Title 4",
-    author: "Author Name 4",
-    description: "This is a brief description of Ebook Title 4.",
-    imageUrl: "path/to/image4.jpg"
+    id: 2,
+    title: "Ebook de Exemplo 2", 
+    description: "Uma descrição do segundo ebook.",
+    coverImage: "/images/ebook2.jpg",
+    price: 24.99,
+    downloadLink: "#"
   }
 ];
