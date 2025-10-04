@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,122 +7,495 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
 }
 
 .App {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  background: white;
+  min-height: 100vh;
+  box-shadow: 0 0 50px rgba(0,0,0,0.1);
 }
 
-/* Header Styles */
-header {
-  background-color: #2c3e50;
+/* Header Styles - Hide/Show on scroll */
+.header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   color: white;
-  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease-in-out;
 }
 
-header h1 {
-  margin-bottom: 0.5rem;
+.header-visible {
+  transform: translateY(0);
 }
 
-header nav ul {
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #fff, #e3f2fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.header nav ul {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-header nav a {
-  color: white;
+.header nav a {
+  color: #e3f2fd;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.header nav a:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.header nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, #64b5f6, #42a5f5);
+  transition: width 0.3s ease;
+}
+
+.header nav a:hover::after {
+  width: 100%;
+}
+
+/* Adicionar padding-top ao body para compensar o header fixo */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding-top: 100px; /* Adicione esta linha */
+}
+
+/* Responsive para header */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .header nav ul {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  body {
+    padding-top: 120px; /* Mais espaço no mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .header nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .header-content {
+    padding: 1rem 0.5rem;
+  }
+  
+  body {
+    padding-top: 140px;
+  }
 }
 
 /* Hero Styles */
 .hero {
-  background-color: #3498db;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: fadeInUp 1s ease-out;
+  line-height: 1.2;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .cta-button {
-  background-color: #e74c3c;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 1.3rem 3.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 60px;
+  box-shadow: 0 8px 30px rgba(238, 90, 36, 0.3);
+  transition: all 0.4s ease;
+  animation: fadeInUp 1s ease-out 0.4s both;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
 }
 
 .cta-button:hover {
-  background-color: #c0392b;
+  background: linear-gradient(45deg, #ee5a24, #e55039);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(238, 90, 36, 0.4);
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin: 4rem 0 3rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
 }
 
 /* Ebook Grid Styles */
 .ebook-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  padding: 2rem 4rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Ebook Card Styles */
 .ebook-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: white;
+  border-radius: 25px;
   overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  border: 1px solid #f8f9fa;
+  position: relative;
+  cursor: pointer;
+}
+
+.ebook-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.ebook-card:hover::before {
+  transform: scaleX(1);
+}
+
+.ebook-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
 }
 
 .ebook-image {
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.ebook-card:hover .ebook-image {
+  transform: scale(1.1);
+}
+
+.ebook-content {
+  padding: 2rem;
 }
 
 .ebook-title {
-  font-size: 1.2rem;
-  margin: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #2c3e50;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.ebook-card:hover .ebook-title {
+  color: #667eea;
 }
 
 .ebook-author {
-  color: #666;
-  margin: 0 1rem 0.5rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .ebook-description {
-  margin: 0 1rem 1rem;
+  color: #5d6d7e;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.ebook-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #27ae60;
+  margin-bottom: 1rem;
+}
+
+.ebook-button {
+  width: 100%;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ebook-button:hover {
+  background: linear-gradient(45deg, #5a67d8, #6b46c1);
+  transform: translateY(-2px);
 }
 
 /* Footer Styles */
 footer {
-  background-color: #2c3e50;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   color: white;
   text-align: center;
-  padding: 2rem 0;
-  margin-top: 2rem;
+  padding: 4rem 2rem 2rem;
+  margin-top: 5rem;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+footer p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
 .social-links {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .social-links a {
-  color: white;
-  margin: 0 1rem;
+  color: #e3f2fd;
+  margin: 0 1.5rem;
   text-decoration: none;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.social-links a:hover {
+  color: #64b5f6;
+  transform: scale(1.3) translateY(-5px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .ebook-grid {
+    padding: 2rem;
+    gap: 2.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  header nav ul {
+    gap: 1.5rem;
+  }
+  
+  .hero {
+    padding: 4rem 1rem 3rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  .cta-button {
+    padding: 1.1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .ebook-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .cta-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  header nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
