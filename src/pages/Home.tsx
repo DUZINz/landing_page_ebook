@@ -1,10 +1,9 @@
 import React from 'react';
-import { Header, Hero, EbookGrid, Footer } from '../components';
+import { Hero, EbookGrid, Footer } from '../components';
 
 const Home: React.FC = () => {
   return (
     <div>
-      <Header />
       <Hero />
       <EbookGrid />
       <Footer />

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  currentPage: string;
+  onNavigate: (page: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  console.log('Header - Received props:', { currentPage, onNavigate: typeof onNavigate });
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Se rolou para baixo, esconde o header
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
-      }
-      // Se rolou para cima, mostra o header
-      else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
       
@@ -24,16 +28,83 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, page: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    console.log('Header - Link clicked:', page);
+    console.log('Header - onNavigate type:', typeof onNavigate);
+    
+    if (onNavigate && typeof onNavigate === 'function') {
+      console.log('Header - Calling onNavigate with:', page);
+      onNavigate(page);
+    } else {
+      console.error('Header - onNavigate is not available or not a function:', onNavigate);
+    }
+  };
+
+  const handleLogoClick = () => {
+    console.log('Header - Logo clicked');
+    if (onNavigate && typeof onNavigate === 'function') {
+      onNavigate('home');
+    }
+  };
+
   return (
     <header className={`header ${isVisible ? 'header-visible' : 'header-hidden'}`}>
       <div className="header-content">
-        <h1>My Ebooks</h1>
+        <h1 
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer' }}
+        >
+          My Ebooks
+        </h1>
         <nav>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#ebooks">Ebooks</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+              <a 
+                href="#"
+                onClick={(e) => handleLinkClick(e, 'home')}
+                style={{
+                  color: currentPage === 'home' ? '#8b95ea' : '#ccc'
+                }}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#"
+                onClick={(e) => handleLinkClick(e, 'ebooks')}
+                style={{
+                  color: currentPage === 'ebooks' ? '#8b95ea' : '#ccc'
+                }}
+              >
+                Ebooks
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#"
+                onClick={(e) => handleLinkClick(e, 'about')}
+                style={{
+                  color: currentPage === 'about' ? '#8b95ea' : '#ccc'
+                }}
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#"
+                onClick={(e) => handleLinkClick(e, 'contact')}
+                style={{
+                  color: currentPage === 'contact' ? '#8b95ea' : '#ccc'
+                }}
+              >
+                Contact
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
